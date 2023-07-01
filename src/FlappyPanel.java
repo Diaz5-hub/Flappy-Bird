@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class FlappyPanel extends JPanel implements KeyListener, ActionListener {
-    final int wallXVelocity = 5;    //how fast the wall is moving towards the bird
+    float wallXVelocity = 5;    //how fast the wall is moving towards the bird
     final int wallWidth = 50;
     final int screenwidth = 525, screenheight = 550;
     int flappyHeight = screenheight/4;
@@ -69,6 +69,7 @@ public class FlappyPanel extends JPanel implements KeyListener, ActionListener {
             }
             if(75 > wallX[i]+wallWidth){
                 score++;
+                wallXVelocity+=0.1;
             }
             if(wallX[i]+wallWidth<=0){
                 wallX[i] = screenwidth;
@@ -78,6 +79,7 @@ public class FlappyPanel extends JPanel implements KeyListener, ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+
         flappyAcceler+= flappyImpulse;
         flappyVel+=flappyAcceler;
         wallX[0]-=wallXVelocity;       //this is what makes the wall move towards the user
